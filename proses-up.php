@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: form_upload.php');
         exit;
     }
-}
+
 
     //validate
     $ekstensi = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -26,7 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error'] = 'Hanya file berjenis JG, JPEG dan PNG yang diizinkan';
         header('Location: form-up.php');
         exit;
-}
+    }
 
-$nama_baru= uniqid() . '_' . time() . '.' . $ekstensi;
-$tujuan = 'uploads/' . $nama_baru;
+    $nama_baru= uniqid() . '_' . time() . '.' . $ekstensi;
+    $tujuan = 'uploads/' . $nama_baru;
+
+
+    if(move_uploaded_file($file['tmp_name'], $tujuan)){
+        $stmt = $conn->prepare("INSERT INTO gambar(nama_file, keterangan)VALUES(?,?)");
+        $stmt->bind_param("ss", $nama_baru, $keterangan);
+        if($stmt->execute()){ //berhasil
+            header('Location: form-up.php');
+            exit;
+        }else{ //gagal
+           unlink($tujuan);
+           $_SESSION['error']= 'Gagal menyimpan ke database';
+           header('Location: form-up.php');
+           exit;
+        }
+        $stmt_>close();
+    }
+}
