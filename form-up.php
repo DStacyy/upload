@@ -14,6 +14,11 @@
                         <h4 class="mb-0">Upload Gambar</h4>
                     </div>
                     <div class="card-body">
+                        <?php if(isset($_SESSION['error'])): ?>
+                            <div class="alert alert-danger">
+                                <?= $_SESSION['error']; unset($_SESSION['error'])?>
+                            </div>
+                            <?php endif; ?>
                         <form action="proses_upload.php" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
