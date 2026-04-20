@@ -23,6 +23,8 @@
                                 <label for="gambar" class="form-label">Keterangan</label>
                                 <input type="file" class="form-control" id="gambar" name="gambar" accept=".jpg, .jpeg, .png" required>
                             </div>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                            <a href="gallery.php" class="btn btn-secondary">Lihat Gallery</a>
                         </form>
                     </div>
                 </div>
