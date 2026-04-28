@@ -35,17 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tujuan = __DIR__ . '/uploads/' . $nama_baru;
 
     // debug pemindahan file
-    var_dump(file_exists(__DIR__ . '/uploads'));
-    var_dump($file['tmp_name']);
-    var_dump($tujuan);
+    // var_dump(file_exists(__DIR__ . '/uploads'));
+    // var_dump($file['tmp_name']);
+    // var_dump($tujuan);
 
-    if(move_uploaded_file($file['tmp_name'], $tujuan)){
-        echo "BERHASIL PINDAH";
-        exit;
-    } else{
-        echo "GAGAL PINDAH";
-        exit;
-        }
+    // if(move_uploaded_file($file['tmp_name'], $tujuan)){
+    //     echo "BERHASIL PINDAH";
+    //     exit;
+    // } else{
+    //     echo "GAGAL PINDAH";
+    //     exit;
+    // }
 
 
     if(move_uploaded_file($file['tmp_name'], $tujuan)){
