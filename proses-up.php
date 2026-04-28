@@ -3,19 +3,22 @@ session_start();
 require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+   
+
     $keterangan = trim($_POST['keterangan']);
     $file = $_FILES['gambar'];
 
     if($file['error'] !== UPLOAD_ERR_OK){
         $_SESSION['error'] = 'Terjadi kesalahan saat mengunggah gambar.';
-        header('Location: form_upload.php');
+        header('Location: form_up.php');
         exit;
     }
 
     //validasi ukuran
     if($file['size'] > 1048576){
         $_SESSION['error'] = 'Ukuran gambar tidak boleh lebih dari 1MB.';
-        header('Location: form_upload.php');
+        header('Location: form_up.php');
         exit;
     }
 
@@ -29,7 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $nama_baru= uniqid() . '_' . time() . '.' . $ekstensi;
-    $tujuan = 'uploads/' . $nama_baru;
+    $tujuan = __DIR__ . '/uploads/' . $nama_baru;
+
+    // debug pemindahan file
+    var_dump(file_exists(__DIR__ . '/uploads'));
+    var_dump($file['tmp_name']);
+    var_dump($tujuan);
+
+    if(move_uploaded_file($file['tmp_name'], $tujuan)){
+        echo "BERHASIL PINDAH";
+        exit;
+    } else{
+        echo "GAGAL PINDAH";
+        exit;
+        }
 
 
     if(move_uploaded_file($file['tmp_name'], $tujuan)){
@@ -44,6 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            header('Location: form-up.php');
            exit;
         }
-        $stmt_>close();
+        $stmt->close();
+    } else{
+        $_SESSION['error'] = 'Gagal memindakan file';
+        header('Location: form-up.php');
+        exit;
     }
+}else{
+    header('Location: form-up.php');
+    exit;
 }

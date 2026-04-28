@@ -2,7 +2,7 @@
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db = 'db_gallery';
+$db = 'galeri_db';
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error){

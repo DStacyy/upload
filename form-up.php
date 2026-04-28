@@ -19,7 +19,7 @@
                                 <?= $_SESSION['error']; unset($_SESSION['error'])?>
                             </div>
                             <?php endif; ?>
-                        <form action="proses_upload.php" method="post" enctype="multipart/form-data">
+                        <form action="proses-up.php" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
                                 <input type="text" class="form-control" id="keterangan" name="keterangan" maxlength="250" required>
