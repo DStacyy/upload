@@ -57,8 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <form method="post">
                             <div class="mb-3">
 
-                                <label for="keterangan" class="form-
-                                label">Keterangan</label>
+                                <label for="keterangan" class="form-label">Keterangan</label>
 
                                 <input type="text" class="form-control" id="keterangan" name="keterangan"
                                     value="<?= htmlspecialchars($data['keterangan']) ?>" maxlength="100" required>
@@ -69,8 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             </div>
 
-                            <button type="submit" class="btn btn-
-                            warning">Update</button>
+                            <button type="submit" class="btn btn-warning">Update</button>
 
                             <a href="galeri.php" class="btn btn-secondary">Batal</a>
                         </form>
